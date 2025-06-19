@@ -1,0 +1,17 @@
+﻿@model Make
+@{
+}<!--model Make sayesinde modelin özelliklerini kullanabiliyoruz aşağıdaki asp-for="Name" modelin özelliği
+     bizim yerimize form için gerekli olan bütün atributleri kendisi ekler.-->
+
+<h4>Yeni Kayıt Ekleme</h4>
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label" for="name">Marka Adı</label>
+        <div class="col-12 col-md-4">
+            <input class="form-control" asp-for="Name" placeholder="marka adını yazınız..." />
+        </div>
+    </div>
+    <hr />
+    <button class="btn btn-primary" type="submit">Kaydet</button>
+    <a class="btn btn-outline-secondary" asp-action="Index">İptal</a>
+</form>
