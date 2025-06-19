@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarDealerApp.Controllers //hangi talebe nasýl cevap vericeðimiz classlar
 {
-    public class HomeController : Controller  //mvc kütüphanesindeki controller classýný miras aldýk(microsoftun yazdýðý class)
+    public class HomeController(CarDealerDbContext dbContext) : Controller  //mvc kütüphanesindeki controller classýný miras aldýk(microsoftun yazdýðý class)
     {
         private readonly ILogger<HomeController> _logger;
 
