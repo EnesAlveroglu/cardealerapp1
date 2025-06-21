@@ -1,0 +1,16 @@
+﻿@model Model
+@{
+}
+
+<h4>Kayıt Silme</h4>
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label" for="name">Marka Adı</label>
+        <div class="col-12 col-md-4">
+            <input class="form-control" asp-for="Name" placeholder="model adını yazınız..." />
+        </div>
+    </div>
+    <hr />
+    <button class="btn btn-primary" type="submit">Kaydet</button>
+    <a class="btn btn-outline-secondary" asp-action="Index">İptal</a>
+</form>

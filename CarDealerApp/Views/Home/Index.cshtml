@@ -2,4 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-> <!--view methodu bu dosyayı alır içinde kod varsa çalıştırır bir html üretir.Bu htmlyi share/layoutun(ortak sayfalar) içinde ki RenderBody nin içine koyar. İki htmlyi birleştirir büyük bir html oluşturur. Htmlyi en son kullanıcıya gönderir. -->
+ <!--view methodu bu dosyayı alır içinde kod varsa çalıştırır bir html üretir.Bu htmlyi share/layoutun(ortak sayfalar) içinde ki RenderBody nin içine koyar. İki htmlyi birleştirir büyük bir html oluşturur. Htmlyi en son kullanıcıya gönderir. -->
+
+<div class="d-flex gap-2 justify-content-center">
+    @foreach (var item in ViewBag.Makes as List<Make>)
+    {
+        <a asp-action="Make" class="btn btn-outline-secondary">@item.Name</a>
+    }
+
+</div>

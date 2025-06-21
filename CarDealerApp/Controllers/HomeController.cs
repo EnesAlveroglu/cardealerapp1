@@ -4,17 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarDealerApp.Controllers //hangi talebe nasýl cevap vericeðimiz classlar
 {
-    public class HomeController(CarDealerDbContext dbContext) : Controller  //mvc kütüphanesindeki controller classýný miras aldýk(microsoftun yazdýðý class)
+    public class HomeController(CarDealerDbContext dbContext) : Controller  //mvc kütüphanesindeki controller classýný miras aldýk(microsoftun yazdýðý class) DbContext classýný inject ettik
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+       
         public IActionResult Index() //index isimli css html dosyasýný arar
         {
+            ViewBag.Makes = dbContext.Makes.ToList();  //controllerdan gelen property viewBag bunun içine markalar listesini koyduk.
             return View();  // view methodu views in içinde index.cshtml arar.
         }
 
@@ -22,6 +17,12 @@ namespace CarDealerApp.Controllers //hangi talebe nasýl cevap vericeðimiz classl
         {
             return View(); //view methodu views in içinde Privacy.cshtml arar.
         }
+
+        public IActionResult Make()
+        {
+            return View(); //view methodu views in içinde Privacy.cshtml arar.
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
