@@ -9,6 +9,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>Marka Adı</th>
             <th>Model Adı</th>
             <th>İşlemler</th>
         </tr>
@@ -17,6 +18,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.Make.Name</td> <!--modelin marka adını çektik.-->
                 <td>@item.Name</td> <!--Marka listesi İtemin içinde marka listesinden her markanın adı Name içinde(Name= Marka adı) (İtem=Veri tabanından çekilen marka listesi) aşağıdaki asp-route-Id="item.Id" her eklenen markanın Id'sini belirtir. Kullanıcı bize bu bilgiyi url'de gönderdi biz şimdi bu Id'yi alıcaz. -->
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning" >Düzenle</a>

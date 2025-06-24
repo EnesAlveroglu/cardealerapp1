@@ -6,6 +6,13 @@
 <h4>Yeni Kayıt Ekleme</h4>
 <form method="post">
     <div class="mb-3">
+        <label class="form-label" for="name">Marka Adı</label>
+        <div class="col-12 col-md-4">
+            <select class="form-select" asp-for="MakeId" asp-items="@ViewBag.Makes">
+            </select> <!--asp-for="MakeId ile kullanıcının girdiği makeleri MakeId içine koydu Model tablosuna databaseye post ile gönderdi."-->
+        </div>
+    </div>
+    <div class="mb-3">
         <label class="form-label" for="name">Model Adı</label>
         <div class="col-12 col-md-4">
             <input class="form-control" asp-for="Name" placeholder="model adını yazınız..." />
