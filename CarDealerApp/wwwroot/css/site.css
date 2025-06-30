@@ -29,3 +29,22 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* arka planý banner.webp olan bir div oluþturuyoruz*/
+.app-banner-wrapper {
+    height: 500px;
+    background-image: url('/images/banner.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Oswald", sans-serif;
+    
+}
+
+    .app-banner-wrapper .app-banner-panel {
+        background-color: rgba(0,0,0,.4) !important;
+        transition: .3s all linear;
+    }
+
+        .app-banner-wrapper .app-banner-panel:hover {
+            background-color: rgba(0,0,0,.7) !important;
+        }

@@ -4,11 +4,23 @@
      bizim yerimize form için gerekli olan bütün atributleri kendisi ekler.-->
 
 <h4>Yeni Kayıt Ekleme</h4>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="mb-3">
-        <label class="form-label" for="name">Marka Adı</label>
+        <label class="form-label" for="Name">Marka Adı</label>
         <div class="col-12 col-md-4">
             <input class="form-control" asp-for="Name" placeholder="marka adını yazınız..." />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Name">Sıralama</label>
+        <div class="col-12 col-md-2">
+            <input class="form-control" asp-for="Sort" placeholder="Sıra numarası yazınız..." />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="name">Logo</label>
+        <div class="col-12 col-md-4">
+            <input type="file" name="PhotoFile" />
         </div>
     </div>
     <hr />

@@ -1,6 +1,6 @@
 ﻿@model Model
 @{
-}<!--model Make sayesinde modelin özelliklerini kullanabiliyoruz aşağıdaki asp-for="Name" modelin özelliği
+}<!--model Model sayesinde modelin özelliklerini kullanabiliyoruz aşağıdaki asp-for="Name" modelin özelliği
      bizim yerimize form için gerekli olan bütün atributleri kendisi ekler.-->
 
 <h4>Yeni Kayıt Ekleme</h4>
@@ -9,7 +9,7 @@
         <label class="form-label" for="name">Marka Adı</label>
         <div class="col-12 col-md-4">
             <select class="form-select" asp-for="MakeId" asp-items="@ViewBag.Makes">
-            </select> <!--asp-for="MakeId ile kullanıcının girdiği makeleri MakeId içine koydu Model tablosuna databaseye post ile gönderdi."-->
+            </select> <!--asp-for="MakeId ile kullanıcının seçtiği markanın Id'sini MakeId içine koydu(foreachkey) Model tablosuna databaseye post ile gönderdi."-->
         </div>
     </div>
     <div class="mb-3">

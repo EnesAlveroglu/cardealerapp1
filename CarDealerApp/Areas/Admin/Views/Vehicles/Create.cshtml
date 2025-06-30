@@ -1,0 +1,52 @@
+﻿@model Vehicle
+@{
+}<!--model Vehicle sayesinde modelin özelliklerini kullanabiliyoruz aşağıdaki asp-for="Name" modelin özelliği
+     bizim yerimize form için gerekli olan bütün atributleri kendisi ekler.-->
+
+<h4>Yeni Kayıt Ekleme</h4>
+<form method="post" enctype="multipart/form-data">
+    <!-- dosya (resim, pdf, vb.) göndermek için enctype="multipart/form-data" kullanırız.-->
+    <div class="mb-3">
+        <label class="form-label" for="name">Model Adı</label>
+        <div class="col-12 col-md-4">
+            <select class="form-select" asp-for="ModelId" asp-items="@ViewBag.Models">
+            </select> <!--asp-for="ModelId ile kullanıcının seçtiği modelin Id'sini ModelId içine koydu Model tablosunu databaseye post ile gönderdi."-->
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Price">Fiyatı</label>
+        <div class="col-12 col-md-4">
+            <input class="form-control" asp-for="Price" placeholder="Fiyatını yazınız..." />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Km">Km</label>
+        <div class="col-12 col-md-4">
+            <input class="form-control" asp-for="Km" placeholder="Km yazınız..." />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Km">Anasayfada Göster</label>
+        <div class="col-12 col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Featured" />
+                <label class="form-check-label" asp-for="Featured">Anasayfada Göster</label>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Description">Açıklama</label>
+        <div class="col-12 ">
+            <textarea class="form-control summernote" rows="8" asp-for="Description" placeholder="Açıklama yazınız..."></textarea> <!--summernote web sitesinden kodlarını bulup ekledik.-->
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Photo">Foto</label>
+        <div class="col-12 col-md-4">
+            <input type="file" name="PhotoFile" />
+        </div>
+    </div>
+    <hr />
+    <button class="btn btn-primary" type="submit">Kaydet</button>
+    <a class="btn btn-outline-secondary" asp-action="Index">İptal</a>
+</form>

@@ -2,12 +2,74 @@
     ViewData["Title"] = "Home Page";
 }
 
- <!--view methodu bu dosyayı alır içinde kod varsa çalıştırır bir html üretir.Bu htmlyi share/layoutun(ortak sayfalar) içinde ki RenderBody nin içine koyar. İki htmlyi birleştirir büyük bir html oluşturur. Htmlyi en son kullanıcıya gönderir. -->
+<!--view methodu bu dosyayı alır içinde kod varsa çalıştırır bir html üretir.Bu htmlyi share/layoutun(ortak sayfalar) içinde ki RenderBody nin içine koyar. İki htmlyi birleştirir büyük bir html oluşturur. Htmlyi en son kullanıcıya gönderir. -->
 
-<div class="d-flex gap-2 justify-content-center">
-    @foreach (var item in ViewBag.Makes as List<Make>)
-    {
-        <a asp-action="Make" class="btn btn-outline-secondary">@item.Name</a>
-    }
+<div class="app-banner-wrapper p-3 d-flex mb-3">
+    <div class="p-4 border border-black rounded-3 app-banner-panel ms-auto">
+        <div class="display-1 fw-bold text-white">
+            MyCar Dealer
+        </div>
+        <div class="display-6 text-white-50 mb-3">
+            Lorem ipsum dolor sit amet.
+        </div>
+        <form method="get">
+            <div class="d-flex align-items-center gap-3">
+                <select class="form-control" name="MakeId">
+                    <option disabled selected>Marka....</option>
+                    @foreach (var make in ViewBag.Makes)
+                    {
+                        <option value="@make.Id">@make.Name</option>
+                    }
+                </select>
 
+                <select class="form-control" name="MakeId">
+                    <option disabled selected>Model....</option>
+                    @foreach (var Model in ViewBag.Models)
+                    {
+                        <option value="@Model.Id">@Model.Name</option>
+                    }
+                </select>
+                <button type="submit" class="btn btn-outline-primary">Ara</button>
+            </div>
+        </form>
+    </div>
 </div>
+<div class="display-5 mb-3 border-bottom">Markalar</div>
+<div class="row row-cols-1 row-cols-md-6 g-4">
+    @foreach (var Make in ViewBag.Makes as IEnumerable<Make>)
+    {
+        <div class="col">
+            <a asp-action="Make" asp-route-id="@Make.Id">
+                <div class="card h-100">
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Make.Photo)" class="card-img-top h-100" />
+                    <div class="card-footer">
+                        <div class="card-title d-flex">
+                            <span class="flex-fill">@Make.Name</span>
+                            <span class="badge bg-primary">@Make.Models.SelectMany(p => p.Vehicles).Count()</span> <!--kaç tane araç olduğunu yazdırmak için Make.Models.SelectMany(p => p.Vehicles).Count()-->
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+ </div>
+    <div class="display-5 mb-3 border-bottom">Sizin İçin Seçtiklerimiz</div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @foreach (var vehicle in ViewBag.Vehicles as IEnumerable<Vehicle>)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(vehicle.Photo)"
+                         class="card-img-top"
+                         style="height: 180px; object-fit: cover;" />
+                    <div class="card-body d-flex flex-column">
+                        <div class="card-title fw-bold">@vehicle.Model.Make.Name @vehicle.Model.Name</div>
+                        <div class="card-text h4 text-success">@vehicle.Price.ToString("n0")</div>
+                        <a class="btn btn-primary mt-auto" asp-action="Detail" asp-route-id="@vehicle.Id">Detaylar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+

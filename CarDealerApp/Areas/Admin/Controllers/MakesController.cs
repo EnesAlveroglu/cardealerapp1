@@ -10,7 +10,7 @@ public class MakesController(CarDealerDbContext dbContext) : Controller //bütü
 {
     public IActionResult Index()
     {
-        var model = dbContext.Makes.OrderBy(p => p.Name).ToList(); //veritabanından kullanıcının girdiği bilgileri Orderby(alfabe sırasına göre yukarıdan aşağıya(büyükten küçüğe) çektik.
+        var model = dbContext.Makes.OrderBy(p => p.Sort).ToList(); //veritabanından kullanıcının girdiği bilgileri Orderby(alfabe sırasına göre yukarıdan aşağıya(büyükten küçüğe) çektik.
         return View(model); //model olarak indexe gönderdik.
     }
 
@@ -23,6 +23,13 @@ public class MakesController(CarDealerDbContext dbContext) : Controller //bütü
     [HttpPost]
     public IActionResult Create(Make model) //post metoduyla gelen verileri make modelin içine koyduk. Kullanıcının doldurduğu veriler make modelin içinde geldi.
     {
+        if(model.PhotoFile != null) //PhotoFile boş değilse  
+        {
+            using var ms = new MemoryStream(); // Bellekte geçici bir MemoryStream(ram de geçici alan) oluştur
+            model.PhotoFile.OpenReadStream().CopyTo(ms); //// Yüklenen dosyayı stream'e kopyala
+            model.Photo = ms.ToArray(); // Stream'i byte[]'e çevirip veritabanına kaydedilecek alana ata
+        }
+
         dbContext.Makes.Add(model); //dbSetin içine ekledik.
         dbContext.SaveChanges(); //databaseye gönderdi.
         return RedirectToAction(nameof(Index)); //verileri indexe döndürdük.
@@ -39,6 +46,12 @@ public class MakesController(CarDealerDbContext dbContext) : Controller //bütü
     [HttpPost]
     public IActionResult Edit(Guid id, Make model) //url'deki id aynı kalır. modeli çağırdı.
     {
+        if (model.PhotoFile != null) //PhotoFile boş değilse  
+        {
+            using var ms = new MemoryStream(); // Bellekte geçici bir MemoryStream(ram de geçici alan) oluştur
+            model.PhotoFile.OpenReadStream().CopyTo(ms); //// Yüklenen dosyayı stream'e kopyala
+            model.Photo = ms.ToArray(); // Stream'i byte[]'e çevirip veritabanına kaydedilecek alana ata
+        }
         dbContext.Makes.Update(model);  // markayı güncelledikten sonraki hali.
         dbContext.SaveChanges(); // Databaseye gönderdik.
         return RedirectToAction(nameof(Index)); //indexe yeni halini döndürdük.

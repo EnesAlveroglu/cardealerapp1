@@ -8,11 +8,12 @@ namespace CarDealerApp.Domain;
         public Guid Id { get; set; }
         public Guid MakeId { get; set; }
         public required string Name { get; set; }
-        public Make? Make { get; set; }   //marka classında zorunlu(required) alanlar olduğu için ad girmeden marka oluşmuyor. Bu yüzden Marka boş olabilir diyoruz.Model oluşturmadan marka oluşturmuyoruz.
        public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
-    }
+        public Make? Make { get; set; }   //marka classında zorunlu(required) alanlar olduğu için ad girmeden marka oluşmuyor. Bu yüzden Marka boş olabilir diyoruz. Veritabanından veri çekerken bazen sadece model çekilir bazen make tablosu da dahil edilip hepsi çekilir bu durumlarda null olabilir.(navigasyon property) 
+          //Find ile sadece modelin özellikleri çekilir.(MakeId dahil) Include ile make tablosu da dahil edilip çekilir.
+}
 
- public class ModelConfiguration : IEntityTypeConfiguration<Model>
+public class ModelConfiguration : IEntityTypeConfiguration<Model>
 {
     public void Configure(EntityTypeBuilder<Model> builder)
     {

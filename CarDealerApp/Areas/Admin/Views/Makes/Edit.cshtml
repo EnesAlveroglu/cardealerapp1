@@ -3,12 +3,25 @@
 }
 
 <h4>Kayıt Güncelleme</h4>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Photo" /> <!--eski resmin byteleri. Kullanıcı resim seçmez ise eski resim null olmasın diye koyduk. -->
     <div class="mb-3">
         <label class="form-label" for="name">Marka Adı</label>
         <div class="col-12 col-md-4">
             <input class="form-control" asp-for="Name" placeholder="marka adını yazınız..." />
         </div> <!--value sayesinde text kutusunu dolu getirdik indexte düzenle butonuna asp-route-id="item.Id" yazarak url kısmına İd yi yazdık makescontroller da id ile satırı find methoduyla çağırdık sonra value = "(et işareti)Model.Name" girerek text kutusunu dolu getirdik. asp-for="Name" = type="text" id="name" name="name"  -->
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Name">Sıralama</label>
+        <div class="col-12 col-md-2">
+            <input class="form-control" asp-for="Sort" placeholder="Sıra numarası yazınız..." />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="name">Logo</label>
+        <div class="col-12 col-md-4">
+            <input type="file" name="PhotoFile" />
+        </div>
     </div>
     <hr />
     <button class="btn btn-primary" type="submit">Kaydet</button>

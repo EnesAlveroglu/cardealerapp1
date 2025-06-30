@@ -1,17 +1,18 @@
-﻿@model List<Make>
+﻿@model List<Vehicle>
 @{
 } <!--CarDealerApp.Domain yolunu _ViewImports.cshtml'ye ekledik.-->
- <!--markalardan oluşan liste modelin içindedir.-->
-<h4>Marka Yönetimi</h4>
+ <!--Araçlardan oluşan liste modelin içindedir.-->
+<h4>Araç Yönetimi</h4>
 <div class="d-flex">
     <a asp-action="Create" class="btn btn-outline-primary ms-auto">Yeni Kayıt</a>
 </div>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Logo</th>
-            <th>Sıra</th>
+            <th>Foto</th>
             <th>Marka Adı</th>
+            <th>Model Adı</th>
+            <th>Fiyat</th>
             <th>İşlemler</th>
         </tr>
     </thead>
@@ -26,14 +27,15 @@
                     }
                     else
                     {
-                        <img src="~/images/noimage.png" height="96" width="96" />
-                        <!--sanal yol ile kendisi bulur.-->
-
+                        <img src="~/images/noimage.png" height="96" width="96" /> <!--sanal yol ile kendisi bulur.-->
 
                     }
+
+
                 </td>
-               <td>@item.Sort</td>
-                <td>@item.Name</td> <!--Marka listesi İtemin içinde marka listesinden her markanın adı Name içinde(Name= Marka adı) (İtem=Veri tabanından çekilen marka listesi) aşağıdaki asp-route-Id="item.Id" her eklenen markanın Id'sini belirtir. Kullanıcı bize bu bilgiyi url'de gönderdi biz şimdi bu Id'yi alıcaz. -->
+                <td>@item.Model!.Make!.Name</td> <!--modelin marka adını çektik. Burda ki ünlem işareti model ve make null olamaz anlamındadır.-->
+                <td>@item.Model.Name</td> <!--Vehicle modelden Model modelin adını çektik.-->
+                <td>@item.Price.ToString("n0")</td> <!--Vehicle modelden fiyatı çektik. ToString("n0") ile fiyatı nokta ile ayırıp düzgün gösterdik.(binler ayıracı("n0") ) -->
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Düzenle</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Sil</a>

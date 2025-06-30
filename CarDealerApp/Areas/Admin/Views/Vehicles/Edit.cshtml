@@ -1,0 +1,51 @@
+﻿@model Vehicle
+@{
+}
+
+<h4>Kayıt Güncelleme</h4>
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Photo" /> <!--eski resmin byteleri. Kullanıcı resim seçmez ise eski resim null olmasın diye koyduk. -->
+    <div class="mb-3">
+        <label class="form-label" for="name">Model Adı</label>
+        <div class="col-12 col-md-4">
+            <select class="form-select" asp-for="ModelId" asp-items="@ViewBag.Models">
+            </select> <!--asp-for="ModelId ile kullanıcının seçtiği modelin Id'sini ModelId içine koydu Model tablosunu databaseye post ile gönderdi."-->
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="name">Photo</label>
+        <div class="col-12 col-md-4">
+            <input type="file" name="PhotoFile" />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="name">Fiyat Adı</label>
+        <div class="col-12 col-md-4">
+            <input class="form-control" asp-for="Price" placeholder="fiyatını yazınız..." />
+        </div> <!--value sayesinde text kutusunu dolu getirdik indexte düzenle butonuna asp-route-id="item.Id" yazarak url kısmına İd yi yazdık Modelscontroller da id ile satırı find methoduyla çağırdık sonra value = "(et işareti)Model.Name" girerek text kutusunu dolu getirdik. asp-for="Name" = type="text" id="name" name="name"  -->
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Km">Km</label>
+        <div class="col-12 col-md-4">
+            <input class="form-control" asp-for="Km" placeholder="Km yazınız..." />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Description">Açıklama</label>
+        <div class="col-12 ">
+            <textarea class="form-control summernote" rows="8" asp-for="Description" placeholder="Açıklama yazınız..."></textarea> <!--summernote web sitesinden kodlarını bulup ekledik.-->
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Name">Anasayfada Göster</label>
+        <div class="col-12 col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Featured" />
+                <label class="form-check-label" asp-for="Featured">Anasayfada Göster</label>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <button class="btn btn-primary" type="submit">Kaydet</button>
+    <a class="btn btn-outline-secondary" asp-action="Index">İptal</a>
+</form>
